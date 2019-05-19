@@ -1,5 +1,7 @@
 package ru.ryazan.calculator;
 
+import ru.ryazan.calculator.exception.CastCharToException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,5 +22,30 @@ public class ConsoleHelper {
         }
     }
 
+    public static int readInt(){
+        try {
+            return Integer.parseInt(read());
+        } catch (NumberFormatException e) {
+            writeMessage("Введено не целое число: попробуйте еще раз");
+            return readInt();
+        }
+    }
+
+    public static Operator readOperator(){
+        String operator = read();
+        if (operator.length() > 1){
+            writeMessage("Длина оператора более 1: введите еще раз.");
+            return readOperator();
+        }else{
+
+            try {
+                char charOperator = operator.charAt(0);
+                return Operator.parseOperator(charOperator);
+            } catch (CastCharToException e) {
+                writeMessage("Введеный оператор не из списка: Попробуйте снова");
+                return readOperator();
+            }
+        }
+    }
 
 }
