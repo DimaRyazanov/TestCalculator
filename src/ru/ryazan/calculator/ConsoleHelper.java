@@ -1,0 +1,24 @@
+package ru.ryazan.calculator;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ConsoleHelper {
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+    public static void writeMessage(String message){
+        System.out.println(message);
+    }
+
+    public static String read(){
+        try {
+            return reader.readLine();
+        } catch (IOException e) {
+            writeMessage("Ошибка чтения строки: попробуйте еще раз");
+            return read();
+        }
+    }
+
+
+}
