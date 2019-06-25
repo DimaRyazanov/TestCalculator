@@ -1,12 +1,12 @@
 package ru.ryazan.calculator;
 
 import ru.ryazan.calculator.calculator.Calculator;
-import ru.ryazan.calculator.calculator.SimpleOperator;
+import ru.ryazan.calculator.calculator.SimpleCalculator;
 import ru.ryazan.calculator.exception.CalculateException;
 
 public class Solution {
     public static void main(String[] args) {
-        Calculator calculator = new SimpleOperator();
+        Calculator calculator = new SimpleCalculator();
 
         ConsoleHelper.writeMessage("Простой калькулятор");
 
@@ -16,10 +16,11 @@ public class Solution {
         ConsoleHelper.writeMessage("Введите второе число:");
         int second = ConsoleHelper.readInt();
 
-        ConsoleHelper.writeMessage("Введите операцию (+, -, *, /");
+        ConsoleHelper.writeMessage("Введите операцию (+, -, *, /)");
         try {
             ConsoleHelper.writeMessage(String.valueOf(calculator.calculate(first, second, ConsoleHelper.readOperator())));
         } catch (CalculateException e) {
+            ConsoleHelper.writeMessage(e.getMessage());
             ConsoleHelper.writeMessage("Ошибка расчета. Сорри бро!");
         }
 
